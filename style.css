@@ -262,3 +262,9 @@ nav.tabs a{flex:none;padding:9px 2px;font-size:13px;white-space:normal;line-heig
   .memo td{height:7.4mm}
 }
 .broken{color:var(--muted);font-size:12.5px}
+/* 会社別ページ：長い一覧の残りを畳む */
+details.more{margin-top:.4rem}
+details.more>summary{cursor:pointer;color:var(--coral);font-weight:700;padding:.5rem 0;list-style:none}
+details.more>summary::-webkit-details-marker{display:none}
+details.more>summary::before{content:"＋ "}
+details.more[open]>summary::before{content:"− "}
