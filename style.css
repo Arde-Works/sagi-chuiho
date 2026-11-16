@@ -280,3 +280,7 @@ details.more[open]>summary::before{content:"− "}
 .ocrst .bar i{display:block;height:100%;width:0;background:var(--coral);transition:width .2s}
 .ocrst small{display:block;color:var(--muted);font-size:.85rem;line-height:1.5}
 .ocrtxt{margin:.5rem 0 0;padding:.5rem .7rem;border-left:3px solid var(--coral-line);background:var(--surface);font-size:.92rem;line-height:1.6;word-break:break-all;border-radius:0}
+/* 情報漏えいのカード */
+.leaklist{list-style:none;padding:0;margin:0;display:grid;gap:.5rem}
+.leaklist li{padding:.55rem .75rem;border-radius:10px;background:var(--bg);line-height:1.6}
+.leaklist small{color:var(--muted)}
