@@ -269,8 +269,10 @@ details.more>summary::-webkit-details-marker{display:none}
 details.more>summary::before{content:"＋ "}
 details.more[open]>summary::before{content:"− "}
 /* 画像から読み取る */
-.ocrbtn{display:flex;align-items:center;justify-content:center;gap:.4rem;width:100%;margin-top:.6rem;padding:.7rem 1rem;border:2px dashed var(--line);border-radius:12px;background:transparent;color:var(--ink);font:inherit;font-weight:700;cursor:pointer}
-.ocrbtn:hover{border-color:var(--coral);color:var(--coral)}
+.ocrbtn{display:flex;align-items:center;justify-content:center;gap:.5rem;width:100%;margin-top:.7rem;min-height:48px;padding:.75rem 1rem;border:2px solid var(--navy);border-radius:12px;background:var(--navy-soft);color:var(--navy);font:inherit;font-size:1rem;font-weight:700;cursor:pointer;box-shadow:0 2px 0 var(--navy)}
+.ocrbtn .i{width:1.3em;height:1.3em}
+.ocrbtn:hover{background:var(--navy);color:var(--surface)}
+.ocrbtn:active{transform:translateY(2px);box-shadow:none}
 .ocrbtn:disabled{opacity:.6;cursor:wait}
 .ocrnote{margin-top:.35rem}
 .ocrst{margin-top:.6rem;padding:.7rem .9rem;border-radius:10px;background:var(--bg)}
