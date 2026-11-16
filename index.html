@@ -164,6 +164,12 @@
     </div></details></div>
   <p class="hint">それより前の注意喚起は <a href="archive/index.html">過去の注意喚起</a> にあります。</p>
 </section>
+<section class="panel stack" id="smsold" hidden>
+  <div class="sec"><h2>これまでに公式発表された偽SMSの文面</h2><span>196件</span></div>
+  <p class="hint">新着ではありませんが、同じ文面がくり返し送られてくることがあります。掲載日の新しい順です（URLは押しても開かない形に置き換えています）。</p>
+  <ul class="past subjlist"><li><span>【dカード】ご利用一時停止、携帯番号[***********]の連携手続きを完了してください。hxxps://d-card[.]***</span><time><a href="company/docomo.html">NTTドコモ</a>・2026年1月16日に掲載</time></li><li><span>【dカード】安全確認のため停止中。携帯番号[***********]の連携手続きを完了してください。hxxps://d-card[.]***</span><time><a href="company/docomo.html">NTTドコモ</a>・2026年1月16日に掲載</time></li><li><span>【d CARD】ご利用一時停止、携帯番号[***********]の連携手続きを完了してください。hxxps://d-card[.]***</span><time><a href="company/docomo.html">NTTドコモ</a>・2026年1月16日に掲載</time></li><li><span>【d CARD】ご利用停止予告、携帯番号[***********]の連携手続きを完了してください。hxxps://d-card[.]****</span><time><a href="company/docomo.html">NTTドコモ</a>・2025年12月16日に掲載</time></li><li><span>【d CARD】ご利用停止予告、本人確認のため[***********]を至急連携してください。hxxps://d-card[.]****</span><time><a href="company/docomo.html">NTTドコモ</a>・2025年12月16日に掲載</time></li><li><span>【dカード】ご利用一時停止。本人確認のため、[***********]の連携を完了してください。hxxps://mydocomo[.]*****</span><time><a href="company/docomo.html">NTTドコモ</a>・2025年12月15日に掲載</time></li><li><span>配送先住所が不明瞭のため、お荷物は配達されませんでした。再配達申請はこちら。t[.]co/h**Gq**</span><time><a href="company/japanpost.html">日本郵便</a></time></li><li><span>ご注文は配送中です。配送料のお支払いはこちらからお願いしますT**y**l[.]com/jppsot</span><time><a href="company/japanpost.html">日本郵便</a></time></li><li><span>お客様のSoftBank回線支払いは拒否されましたため、本人認証をご確認ください。hxxps://softbank[.]myctm●●[.]com</span><time><a href="company/softbank.html">ソフトバンク</a></time></li><li><span>お客様のSoftBank回線の支付問題が発生したため、本人認証設定をご確認ください。hxxps://softbank[.]myctm●●[.]com</span><time><a href="company/softbank.html">ソフトバンク</a></time></li></ul>
+  <p><a class="more-link" href="sms.html">偽SMSの文面をすべて見る（196件）→</a></p>
+</section>
 </main><aside class="side" aria-label="探す・相談する"><div class="sticky"><form class="sbox" action="company/index.html" method="get">
   <label for="sc"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M3 9l9-5 9 5zM5 9v8M9.5 9v8M14.5 9v8M19 9v8M3 20h18"/></svg>会社名で探す</label>
   <input id="sc" name="q" placeholder="例：セゾン、ゆうちょ" autocomplete="off">
@@ -206,5 +212,6 @@ sf.addEventListener('submit',ev=>{ev.preventDefault();
 (()=>{const q0=new URLSearchParams(location.search).get('q');if(q0){const q=document.getElementById('q');q.value=q0;q.dispatchEvent(new Event('input'));sf.requestSubmit();document.getElementById('res').scrollIntoView({block:'center'});}})();
 document.querySelectorAll('.chip').forEach(b=>b.addEventListener('click',()=>{
  document.querySelectorAll('.chip').forEach(x=>x.setAttribute('aria-pressed',x===b));
- const c=b.dataset.ch;document.querySelectorAll('#list details.card').forEach(x=>{x.hidden=!(c==='すべて'||x.dataset.ch.split(' ').includes(c))});}));
+ const c=b.dataset.ch;document.querySelectorAll('#list details.card').forEach(x=>{x.hidden=!(c==='すべて'||x.dataset.ch.split(' ').includes(c))});
+ const so=document.getElementById('smsold');if(so)so.hidden=c!=='SMS';}));
 </script></body></html>
