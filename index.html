@@ -28,6 +28,10 @@
 <div class="wrap layout"><main><form class="panel search" id="sf">
   <label for="q"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>届いたメッセージの件名・文面で探す</label>
   <div class="row"><div class="inwrap"><input id="q" placeholder="例：11月お支払金額のお知らせ／お荷物を持ち帰りました" autocomplete="off"><button type="button" class="clear" aria-label="入力を消す" hidden>×</button></div><button class="btn" type="submit"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>探す</button></div>
+  <button type="button" class="ocrbtn" id="ocrbtn"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="2"/><path d="M21 16l-5-5-9 9"/></svg>画像から読み取る</button>
+  <input type="file" id="ocrfile" accept="image/*" hidden>
+  <p class="hint ocrnote">スクリーンショット（画面を撮った画像）を選んでください。画像はこの端末の中だけで読み取り、どこにも送信しません。</p>
+  <div class="ocrst" id="ocrst" hidden><span id="ocrmsg"></span><div class="bar"><i id="ocrbar"></i></div><small id="ocrsub"></small><blockquote class="ocrtxt" id="ocrtxt" hidden></blockquote></div>
   <p class="hint">メールの件名や、SMSの文面を貼り付けてください。公式に発表された469件の件名・文面と照らし合わせます。URLの部分は照らし合わせに使いません。</p>
   <div id="res" hidden></div></form>
 <a class="panic" href="help.html"><svg class="shield" viewBox="0 0 48 48" aria-hidden="true"><path d="M24 4l16 6v11c0 11-7 18-16 22C15 39 8 32 8 21V10z" fill="currentColor"/><path d="M24 15v12M24 32v1" stroke="#fff" stroke-width="4" stroke-linecap="round"/></svg>
@@ -209,6 +213,41 @@ sf.addEventListener('submit',ev=>{ev.preventDefault();
 (()=>{const q=document.getElementById('q'),x=q.nextElementSibling;
  q.addEventListener('input',()=>{x.hidden=!q.value});
  x.addEventListener('click',()=>{q.value='';x.hidden=true;document.getElementById('res').hidden=true;q.focus()});})();
+// ---- 画像から読み取る（読み取りはこの端末の中だけ。画像はどこにも送らない） ----
+(()=>{const btn=document.getElementById('ocrbtn'),file=document.getElementById('ocrfile'),st=document.getElementById('ocrst'),
+ msg=document.getElementById('ocrmsg'),bar=document.getElementById('ocrbar'),sub=document.getElementById('ocrsub'),qi=document.getElementById('q');
+ if(!btn)return;let busy=false;
+ const abs=p=>new URL(p,location.href).href;
+ const tx=document.getElementById('ocrtxt');
+ const show=(m,pct,s,t)=>{st.hidden=false;tx.hidden=!t;tx.textContent=t||'';msg.textContent=m;bar.style.width=(pct==null?0:Math.round(pct))+'%';bar.parentNode.hidden=pct==null;sub.textContent=s||''};
+ const lib=()=>window.Tesseract?Promise.resolve():new Promise((ok,ng)=>{const sc=document.createElement('script');sc.src=abs('assets/ocr/tesseract.min.js');sc.onload=ok;sc.onerror=ng;document.head.appendChild(sc)});
+ // 読み取りやすいように：小さい画像は拡大、白黒にして、暗い画面（ダークモード）は反転する
+ const prep=async f=>{const img=await createImageBitmap(f);let k=img.width<1000?2:img.width>2400?2400/img.width:1;
+  const c=document.createElement('canvas');c.width=Math.round(img.width*k);c.height=Math.round(img.height*k);const x=c.getContext('2d');
+  x.imageSmoothingQuality='high';x.drawImage(img,0,0,c.width,c.height);const d=x.getImageData(0,0,c.width,c.height),a=d.data;let sum=0;
+  for(let i=0;i<a.length;i+=4){const g=0.299*a[i]+0.587*a[i+1]+0.114*a[i+2];a[i]=a[i+1]=a[i+2]=g;sum+=g}
+  if(sum/(a.length/4)<128){for(let i=0;i<a.length;i+=4){a[i]=a[i+1]=a[i+2]=255-a[i]}}
+  x.putImageData(d,0,0);return c};
+ const tidy=t=>t.replace(/\r/g,'').split('\n').map(l=>l.trim()).filter(Boolean).join(' ')
+  .replace(/([^\x00-\x7F])\s+(?=[^\x00-\x7F])/g,'$1').replace(/\s{2,}/g,' ').trim();
+ const run=async f=>{if(busy||!f||!/^image\//.test(f.type))return;busy=true;btn.disabled=true;
+  show('読み取りの準備をしています…',null,'はじめての時は、読み取りの道具（約6MB）の準備に少し時間がかかります');
+  let w;try{await lib();const cv=await prep(f);
+   w=await Tesseract.createWorker('jpn',1,{workerPath:abs('assets/ocr/worker.min.js'),corePath:abs('assets/ocr/core/'),langPath:abs('assets/ocr/lang'),cacheMethod:'none',
+    logger:m=>{if(m.status==='recognizing text')show('文字を読み取っています… '+Math.round(m.progress*100)+'%',m.progress*100);}});
+   const r=await w.recognize(cv);const t=tidy(r.data.text||'');
+   if(!t){show('文字を読み取れませんでした。',null,'文字がはっきり写っている部分だけを切り取った画像でお試しください。');return}
+   qi.value=t;qi.dispatchEvent(new Event('input'));
+   show('読み取りました。',null,'読み取った文字は間違っていることがあります。違っていたら入力欄で直して「探す」を押してください。',t);
+   sf.requestSubmit();
+  }catch(e){show('読み取りに失敗しました。',null,'このブラウザでは使えないか、画像の形式に対応していない可能性があります。文面をコピーして貼り付けてください。');}
+  finally{if(w)w.terminate();busy=false;btn.disabled=false;file.value='';}};
+ btn.addEventListener('click',()=>file.click());
+ file.addEventListener('change',()=>run(file.files[0]));
+ document.addEventListener('paste',ev=>{const it=[...(ev.clipboardData||{}).items||[]].find(i=>i.type.startsWith('image/'));if(it){ev.preventDefault();run(it.getAsFile())}});
+ sf.addEventListener('dragover',ev=>{ev.preventDefault()});
+ sf.addEventListener('drop',ev=>{const f=[...ev.dataTransfer.files].find(f=>f.type.startsWith('image/'));if(f){ev.preventDefault();run(f)}});
+})();
 (()=>{const q0=new URLSearchParams(location.search).get('q');if(q0){const q=document.getElementById('q');q.value=q0;q.dispatchEvent(new Event('input'));sf.requestSubmit();document.getElementById('res').scrollIntoView({block:'center'});}})();
 document.querySelectorAll('.chip').forEach(b=>b.addEventListener('click',()=>{
  document.querySelectorAll('.chip').forEach(x=>x.setAttribute('aria-pressed',x===b));
