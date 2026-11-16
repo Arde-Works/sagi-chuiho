@@ -284,3 +284,44 @@ details.more[open]>summary::before{content:"− "}
 .leaklist{list-style:none;padding:0;margin:0;display:grid;gap:.5rem}
 .leaklist li{padding:.55rem .75rem;border-radius:10px;background:var(--bg);line-height:1.6}
 .leaklist small{color:var(--muted)}
+
+/* ---- コラム「脳のスキマ図鑑」 ---- */
+.colseries{margin:0;font-size:13px;font-weight:700;color:var(--coral);letter-spacing:.04em}
+.colsub{margin:2px 0 12px;font-size:14px;color:var(--muted)}
+.colthumb{position:relative;display:block;border-radius:14px;overflow:hidden;border:1px solid var(--line);background:var(--surface)}
+.colthumb img{display:block;width:100%;height:auto;aspect-ratio:1200/630;object-fit:cover}
+.colno{position:absolute;top:8px;right:8px;background:var(--navy);color:#fff;font-weight:700;font-size:13px;line-height:1;padding:6px 10px;border-radius:999px;box-shadow:0 1px 3px rgba(0,0,0,.25)}
+.colthumb.big .colno{top:12px;right:12px;font-size:16px;padding:8px 13px}
+.colfeat,.colcard{display:block;text-decoration:none;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);overflow:hidden;margin:14px 0}
+.colfeat .colthumb,.colcard .colthumb{border:0;border-radius:0}
+.colbody{display:block;padding:12px 16px 16px}
+.colbody small{display:block;color:var(--coral);font-weight:700;font-size:12.5px}
+.colbody b{display:block;font-size:17px;line-height:1.5;margin:2px 0 4px}
+.colbody span{display:block;font-size:13.5px;color:var(--muted)}
+.colcard .colbody b{font-size:15px}
+.colgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px}
+.colgrid .colcard{margin:0}
+.column{background:var(--surface);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);padding:20px;margin-top:10px}
+.column .colsum{font-size:15px;font-weight:700;margin:14px 0 6px}
+.column h2{font-size:18px;color:var(--navy);background:var(--navy-soft);border-left:5px solid var(--coral);border-radius:0 10px 10px 0;padding:8px 12px;margin:30px 0 12px;line-height:1.5}
+.column p{margin:0 0 12px}
+.column figure{margin:16px 0}
+.column figure img{display:block;width:100%;height:auto;border-radius:12px;border:1px solid var(--line)}
+.column ol,.column ul{padding-left:1.4em;margin:0 0 12px}
+.column li{margin:4px 0}
+.column .quiz{margin:12px 0;padding:14px 16px;background:var(--coral-soft);border:1.5px solid var(--coral-line);border-radius:14px;font-weight:700}
+.column .tablewrap{overflow-x:auto;margin:0 0 12px}
+.column table.duo{border-collapse:collapse;width:100%;min-width:420px;font-size:14px}
+.column table.duo th,.column table.duo td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+.column table.duo thead th{background:var(--navy-soft)}
+.column table.duo thead th:nth-child(2){color:var(--coral)}
+.column .colsrc{font-size:13px;color:var(--muted)}
+.column .colsrc a{word-break:break-all}
+@media (max-width:560px){nav.tabs.n7{grid-template-columns:repeat(4,1fr)}.column{padding:16px}}
+.colhead p{margin:0}
+.colhead .colttl{font-size:24px;font-weight:700;color:var(--navy);line-height:1.4}
+.colhead .colsub{margin-top:2px}
+.colhead h1.page{margin:4px 0 2px}
+nav.tabs a{word-break:keep-all}
+.colgrid{grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}
+@media (max-width:560px){.column table.duo{min-width:0;font-size:13px}.column table.duo th,.column table.duo td{padding:6px 7px}.column table.duo tbody th{white-space:nowrap}}
