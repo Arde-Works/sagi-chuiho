@@ -343,3 +343,4 @@ a.chip[aria-current="page"]{background:var(--navy);border-color:var(--navy);colo
 .body>.hint{grid-column:2;margin:-6px 0 0}
 @media (max-width:520px){.body>.hint{grid-column:auto;margin:0}}
 .body .leaklist{padding-left:0}
+.body li .when{margin-left:.6em;color:var(--muted);font-size:12px;white-space:nowrap}
