@@ -325,3 +325,16 @@ details.more[open]>summary::before{content:"− "}
 nav.tabs a{word-break:keep-all}
 .colgrid{grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}
 @media (max-width:560px){.column table.duo{min-width:0;font-size:13px}.column table.duo th,.column table.duo td{padding:6px 7px}.column table.duo tbody th{white-space:nowrap}}
+
+/* 新着の一覧のページ送り */
+a.chip{text-decoration:none;display:inline-flex;align-items:center}
+a.chip[aria-current="page"]{background:var(--navy);border-color:var(--navy);color:var(--surface);font-weight:700}
+.pager{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:6px 0;font-size:14px}
+.pager .nums{display:flex;flex-wrap:wrap;gap:4px;justify-content:center}
+.pager .nums a{min-width:34px;height:34px;display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--line);border-radius:10px;background:var(--surface);text-decoration:none;color:var(--ink)}
+.pager .nums a[aria-current="page"]{background:var(--navy);color:#fff;border-color:var(--navy);font-weight:700}
+.pager .pv,.pager .nx{min-width:5em;font-weight:700}
+.pager .nx{text-align:right}
+/* コラムの挿絵はパソコンで大きくなりすぎないように */
+.column figure img{max-width:520px;margin-inline:auto}
+.column .colthumb.big{max-width:640px;margin-inline:auto}
