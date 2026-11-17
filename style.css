@@ -362,3 +362,7 @@ nav.tabs a[aria-current="page"]{background:#fff;color:#24456E;box-shadow:inset 0
 nav.tabs a{flex-direction:column;gap:3px;padding:8px 2px;font-size:12.5px}
 nav.tabs a svg{width:20px;height:20px}
 }
+/* カードの小見出しは紺にして、本文と見分けやすくする（「→」の後の“すること”はコーラル） */
+.box h3{color:var(--navy);font-size:16.5px;line-height:1.5;margin-bottom:6px}
+.box h3 .act{color:var(--coral);white-space:normal}
+.contact>b{color:var(--navy)}
