@@ -369,3 +369,10 @@ nav.tabs a svg{width:20px;height:20px}
 /* 用語集：用語は紺、説明は本文色。用語の下にうすい線を引いて区切る */
 dl.terms dt{color:var(--navy);font-size:17px;padding-bottom:6px;margin-bottom:6px;border-bottom:1px dashed var(--line)}
 dl.terms dd{margin:0}
+/* 検索：文面に出てきた会社名から、公式の案内へつなぐ */
+.cohit{margin-top:12px;padding:12px 14px;border-radius:12px;background:var(--navy-soft);border-left:4px solid var(--navy)}
+.cohit b{display:block;color:var(--navy)}
+.cohit small{display:block;color:var(--muted);font-size:13px;line-height:1.6}
+.cohit ul{margin:6px 0 0;padding-left:1.2em}
+.cotip{margin:8px 0 0;padding:6px 10px;background:var(--surface);border-radius:8px;font-size:14px}
+.cosafe .cotip{background:var(--navy-soft)}
