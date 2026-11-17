@@ -350,3 +350,15 @@ a.chip[aria-current="page"]{background:var(--navy);border-color:var(--navy);colo
 .tip{border-left:4px solid var(--coral-line)}
 .tip p{padding-left:38px}
 @media (max-width:560px){.tip p{padding-left:0}}
+/* タブ＝サイトの大項目。紺の帯にして、ほかのボタンと見分けがつくようにする */
+nav.tabs{background:#24456E;border-color:#24456E;padding:6px}
+nav.tabs a{color:#fff;font-weight:700;display:flex;align-items:center;justify-content:center;gap:6px}
+nav.tabs a svg{width:18px;height:18px;flex:none;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;opacity:.9}
+nav.tabs a:hover{background:rgb(255 255 255 / .12)}
+nav.tabs a[aria-current="page"]{background:#fff;color:#24456E;box-shadow:inset 0 -3px 0 #E5533D}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) nav.tabs{background:#2A4A73;border-color:#3A5D88}}
+:root[data-theme="dark"] nav.tabs{background:#2A4A73;border-color:#3A5D88}
+@media (max-width:560px){
+nav.tabs a{flex-direction:column;gap:3px;padding:8px 2px;font-size:12.5px}
+nav.tabs a svg{width:20px;height:20px}
+}
