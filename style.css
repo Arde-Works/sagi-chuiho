@@ -366,3 +366,6 @@ nav.tabs a svg{width:20px;height:20px}
 .box h3{color:var(--navy);font-size:16.5px;line-height:1.5;margin-bottom:6px}
 .box h3 .act{color:var(--coral);white-space:normal}
 .contact>b{color:var(--navy)}
+/* 用語集：用語は紺、説明は本文色。用語の下にうすい線を引いて区切る */
+dl.terms dt{color:var(--navy);font-size:17px;padding-bottom:6px;margin-bottom:6px;border-bottom:1px dashed var(--line)}
+dl.terms dd{margin:0}
