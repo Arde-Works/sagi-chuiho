@@ -338,3 +338,4 @@ a.chip[aria-current="page"]{background:var(--navy);border-color:var(--navy);colo
 /* コラムの挿絵はパソコンで大きくなりすぎないように */
 .column figure img{max-width:520px;margin-inline:auto}
 .column .colthumb.big{max-width:640px;margin-inline:auto}
+.tel.mail{font-size:15px;word-break:break-all}
