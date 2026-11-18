@@ -1,2 +1,3 @@
 User-agent: *
-Disallow: /
+Allow: /
+Sitemap: https://arde-works.github.io/sagi-chuiho/sitemap.xml
