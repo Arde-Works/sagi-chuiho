@@ -376,3 +376,6 @@ dl.terms dd{margin:0}
 .cohit ul{margin:6px 0 0;padding-left:1.2em}
 .cotip{margin:8px 0 0;padding:6px 10px;background:var(--surface);border-radius:8px;font-size:14px}
 .cosafe .cotip{background:var(--navy-soft)}
+/* 幅が足りないときは横にはみ出さず、折り返して全部見せる（はみ出すと右端のタブが押せない） */
+nav.tabs{flex-wrap:wrap;overflow:visible}
+@media (min-width:561px) and (max-width:1099px){nav.tabs.n7{display:grid;grid-template-columns:repeat(4,1fr)}nav.tabs.n7 a{padding:9px 6px}}
