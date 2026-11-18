@@ -379,3 +379,14 @@ dl.terms dd{margin:0}
 /* 幅が足りないときは横にはみ出さず、折り返して全部見せる（はみ出すと右端のタブが押せない） */
 nav.tabs{flex-wrap:wrap;overflow:visible}
 @media (min-width:561px) and (max-width:1099px){nav.tabs.n7{display:grid;grid-template-columns:repeat(4,1fr)}nav.tabs.n7 a{padding:9px 6px}}
+/* 家族に教える */
+.sharebtn{margin-left:.5rem}
+.sharefoot{text-align:center;margin-top:28px;margin-bottom:8px}
+.sharefoot p{margin:0 0 8px;color:var(--muted);font-size:14px}
+.sharefoot .sharebtn{margin:0}
+.sharemsg{display:block;margin-top:6px;font-size:13px;color:var(--navy)}
+.sharemsg:empty{display:none}
+@media print{.sharefoot,.sharebtn{display:none!important}}
+.btnrow{display:flex;flex-wrap:wrap;gap:0 .5rem;align-items:center}
+.btnrow .sharebtn{margin-left:0}
+.btnrow .sharemsg{flex-basis:100%}

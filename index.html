@@ -28,7 +28,7 @@
 <div class="wrap layout"><main><form class="panel search" id="sf">
   <label for="q"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>届いたメッセージの件名・文面で探す</label>
   <div class="row"><div class="inwrap"><input id="q" placeholder="例：11月お支払金額のお知らせ／お荷物を持ち帰りました" autocomplete="off"><button type="button" class="clear" aria-label="入力を消す" hidden>×</button></div><button class="btn" type="submit"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>探す</button></div>
-  <button type="button" class="ocrbtn" id="ocrbtn"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="2"/><path d="M21 16l-5-5-9 9"/></svg>画像から読み取る</button>
+  <div class="btnrow"><button type="button" class="ocrbtn" id="ocrbtn"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="2"/><path d="M21 16l-5-5-9 9"/></svg>画像から読み取る</button><button type="button" class="ocrbtn sharebtn"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.6 13.5 6.8 4M15.4 6.5l-6.8 4"/></svg>家族に教える</button></div>
   <input type="file" id="ocrfile" accept="image/*" hidden>
   <p class="hint ocrnote">スクリーンショット（画面を撮った画像）を選んでください。画像はこの端末の中だけで読み取り、どこにも送信しません。</p>
   <div class="ocrst" id="ocrst" hidden><span id="ocrmsg"></span><div class="bar"><i id="ocrbar"></i></div><small id="ocrsub"></small><blockquote class="ocrtxt" id="ocrtxt" hidden></blockquote></div>
@@ -108,6 +108,7 @@
   <div class="stel"><span>消費者ホットライン</span><b>188</b></div>
   <div class="stel"><span>迷惑電話（でんわんセンター）</span><b>03-6162-1111</b><small>平日10:00〜17:00</small></div>
   <a href="help.html#contact">通報先・相談先をもっと見る →</a></div></div></aside></div>
+<div class="wrap sharefoot"><p>怪しいメールが届いたときのために、このサイトをご家族にも教えてあげてください。</p><button type="button" class="ocrbtn sharebtn"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.6 13.5 6.8 4M15.4 6.5l-6.8 4"/></svg>家族に教える</button><span class="sharemsg" role="status"></span></div>
 <footer><div class="wrap">
   <div><p>掲載内容は各機関・各社の発表をもとに整理しています。正確な情報は必ず出典をご確認ください。</p>
   <p>サイト内のURLは、誤って開かないよう一部の記号を置き換えて表示しています。</p>
@@ -116,6 +117,14 @@
   <div class="links"><a href="privacy.html">プライバシーポリシー・免責事項</a><a href="https://forms.gle/Ac9WqdgZA98ka7sr7" rel="noopener">お問い合わせ</a><span>運営：Arde Works</span></div>
 </div></footer>
 <button type="button" id="totop" class="totop" aria-label="ページの先頭へ戻る" hidden>↑<span>上へ</span></button>
+<script>(()=>{const url="https://arde-works.github.io/sagi-chuiho/",title="\u8a50\u6b3a\u30e1\u30fc\u30eb\u6ce8\u610f\u5831",text="\u602a\u3057\u3044\u30e1\u30fc\u30eb\u3084SMS\u304c\u5c4a\u3044\u305f\u3089\u3001\u3053\u306e\u30b5\u30a4\u30c8\u3067\u4ef6\u540d\u3092\u8abf\u3079\u3089\u308c\u307e\u3059\u3002\u516c\u7684\u6a5f\u95a2\u3084\u4f01\u696d\u304c\u516c\u5f0f\u306b\u767a\u8868\u3057\u305f\u8a50\u6b3a\u30e1\u30fc\u30eb\u3092\u307e\u3068\u3081\u305f\u30b5\u30a4\u30c8\u3067\u3059\u3002";
+document.querySelectorAll('.sharebtn').forEach(btn=>btn.addEventListener('click',async()=>{
+ const say=t=>{let m=btn.parentElement.querySelector('.sharemsg');if(!m){m=document.createElement('span');m.className='sharemsg';m.setAttribute('role','status');btn.after(m)}m.textContent=t};
+ if(navigator.share){try{await navigator.share({title,text,url});return}catch(e){if(e.name==='AbortError')return}}
+ const all=text+'\n'+title+' '+url;
+ try{await navigator.clipboard.writeText(all);say('コピーしました。メールなどに貼り付けて送ってください。')}
+ catch(e){prompt('この文章をコピーして送ってください',all)}
+}));})();</script>
 <script>(()=>{const b=document.getElementById('totop');
 addEventListener('scroll',()=>{b.hidden=scrollY<500},{passive:true});
 b.addEventListener('click',()=>{scrollTo({top:0,behavior:'smooth'});if(location.hash)history.replaceState(null,'',location.pathname)});})();</script>
